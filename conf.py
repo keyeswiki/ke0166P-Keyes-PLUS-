@@ -22,6 +22,9 @@ copyright = 'keyes , WiKi'
 author = 'keyes WiKi'
 copyright = 'Shenzhen keyes Technology Co., Ltd'
 
+root_doc = "index"
+master_doc = "index"
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
