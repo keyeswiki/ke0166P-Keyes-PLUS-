@@ -1,6 +1,6 @@
 
 .. toctree::
-   :maxdepth: 6
+   :maxdepth: 3
    :caption: ke0166P Keyes套件 小乌龟 多功能智能小车 PLUS主板
 
    README.md
