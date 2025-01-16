@@ -70,7 +70,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'sphinx_book_theme'
 html_theme_options = {
-  "show_toc_level": 3
+  "show_toc_level": 3,
+  "show_navbar_depth": 2,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
