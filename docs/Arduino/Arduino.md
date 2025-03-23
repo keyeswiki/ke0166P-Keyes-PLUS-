@@ -380,41 +380,25 @@ LED显示颜色：红色
 
 项目代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程1.1
+    LED闪烁
+    http://www.keyes-robot.com
+    */
 
-课程1.1
+    void setup() {
+        pinMode(9, OUTPUT); // 设置数字口9为输出模式
+    }
 
-LED闪烁
+    void loop() { // 反复循环
+        digitalWrite(9, HIGH); // 设置数字口9为高电平，打开LED
+        delay(1000);           // 等待1秒
+        digitalWrite(9, LOW);  // 设置数字口9为低电平，关闭LED
+        delay(1000);           // 等待1秒
+    }
 
-http://www.keyes-robot.com
-
-\*/
-
-void setup()
-
-{
-
-pinMode(9, OUTPUT);// 设置数字口9为输出模式
-
-}
-
-void loop() // 反复循环
-
-{
-
-digitalWrite(9, HIGH); // 设置数字口9为高电平，打开LED
-
-delay(1000); // 等待1秒
-
-digitalWrite(9, LOW); // 设置数字口9为低电平，关闭LED
-
-delay(1000); // 等待1秒
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 项目结果：
 
@@ -435,41 +419,25 @@ digitalWrite(9，HIGH) -
 
 代码如下:
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程1.2
+    LED闪烁
+    http://www.keyes-robot.com
+    */
 
-课程1.2
+    void setup() {
+        pinMode(9, OUTPUT); // 设置数字口9为输出模式
+    }
 
-LED闪烁
+    void loop() { // 反复循环
+        digitalWrite(9, HIGH); // 设置数字口9为高电平，打开LED
+        delay(100);            // 等待0.1秒
+        digitalWrite(9, LOW);  // 设置数字口9为低电平，关闭LED
+        delay(100);            // 等待0.1秒
+    }
 
-http://www.keyes-robot.com
-
-\*/
-
-void setup()
-
-{
-
-pinMode(9, OUTPUT);// 设置数字口9为输出模式
-
-}
-
-void loop() // 反复循环
-
-{
-
-digitalWrite(9, HIGH); // 设置数字口9为高电平，打开LED
-
-delay(100); // 等待0.1秒
-
-digitalWrite(9, LOW); // 设置数字口9为低电平，关闭LED
-
-delay(100); // 等待0.1秒
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 怎么样是不是很好理解，就是通过改变delay
 这个代码的时间，来改变3脚LED亮和灭的频率，不多说，我们上传代码。看看这个LED灯闪烁的频率是不是比之前快了？
@@ -504,35 +472,33 @@ Arduino的PWM引脚在3，5，6，9，10，11,上一小节的接线刚刚好在9
 
 我们来看Arduino代码:
 
-int ledPin = 9; // 定义LED灯接数字口9
 
-int brightness;
+    /* 
+    小乌龟智能车
+    课程2.1
+    pwm
+    http://www.keyes-robot.com
+    */
+    int ledPin = 9; // 定义LED灯接数字口9
 
-void setup () {
+    int brightness;
 
-pinMode (ledPin, OUTPUT); //初始化LED为输出模式
+    void setup() {
+        pinMode(ledPin, OUTPUT); // 初始化LED为输出模式
+    }
 
-}
+    void loop() {
+        for (brightness = 0; brightness < 255; brightness = brightness + 1) {
+            analogWrite(ledPin, brightness); // 变亮
+            delay(5); // 延迟5ms
+        }
 
-void loop () {
+        for (brightness = 255; brightness > 0; brightness = brightness - 1) {
+            analogWrite(ledPin, brightness); // 变暗
+            delay(5); // 延迟5ms
+        }
+    }
 
-for (brightness = 0; brightness \< 255; brightness = brightness + 1) {
-
-analogWrite (ledPin, brightness); //变亮
-
-delay (5); // 延迟5ms
-
-}
-
-for (brightness = 255; brightness \> 0; brightness = brightness - 1) {
-
-analogWrite (ledPin, brightness); //变暗
-
-delay (5); // 延迟5ms
-
-}
-
-}
 
 项目结果：
 
@@ -595,49 +561,32 @@ PWM比较多的用于调节LED灯的亮度。或者是电机的转动速度，�
 
 我们不改变灯的脚位，只是改变程序里面delay的值，看看它如何改变渐变效果。
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程2.2
+    呼吸灯
+    http://www.keyes-robot.com
+    */
 
-课程2.2
+    int ledPin = 9; // 定义LED灯接数字口9
 
-呼吸灯
+    void setup() {
+        pinMode(ledPin, OUTPUT); // 初始化LED为输出模式
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        for (int brightness = 0; brightness < 255; brightness = brightness + 1) {
+            analogWrite(ledPin, brightness); // 变亮
+            delay(30); // 延迟30ms
+        }
 
-\*/
+        for (int brightness = 255; brightness > 0; brightness = brightness - 1) {
+            analogWrite(ledPin, brightness); // 变暗
+            delay(30); // 延迟30ms
+        }
+    }
 
-int ledPin = 9; // 定义LED灯接数字口9
-
-void setup () {
-
-pinMode (ledPin, OUTPUT); //初始化LED为输出模式
-
-}
-
-void loop () {
-
-for (int brightness = 0; brightness \< 255; brightness = brightness + 1)
-{
-
-analogWrite (ledPin, brightness); //变亮
-
-delay (30); // 延迟30ms
-
-}
-
-for (int brightness = 255; brightness \> 0; brightness = brightness - 1)
-{
-
-analogWrite (ledPin, brightness); //变暗
-
-delay (30); // 延迟30ms
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 上传代码到开发板，看LED渐变的效果是不是慢了一些。
 
@@ -687,67 +636,42 @@ delay (30); // 延迟30ms
 
 项目代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程3.1
+    循迹传感器
+    http://www.keyes-robot.com
+    */
 
-课程3.1
+    int L_pin = 11; // 左边循迹传感器的引脚接数字口11
+    int M_pin = 7;  // 中间循迹传感器的引脚接数字口7
+    int R_pin = 8;  // 右边循迹传感器的引脚接数字口8
 
-循迹传感器
+    int val_L, val_R, val_M; // 定义三个传感器的变量值
 
-http://www.keyes-robot.com
+    void setup() {
+        Serial.begin(9600); // 启动串口监视器，并设置波特率为9600
+        pinMode(L_pin, INPUT); // 左边循迹传感器设置为输入
+        pinMode(M_pin, INPUT); // 中间循迹传感器设置为输入
+        pinMode(R_pin, INPUT); // 右边循迹传感器设置为输入
+    }
 
-\*/
+    void loop() {
+        val_L = digitalRead(L_pin); // 读取左边传感器的值
+        val_R = digitalRead(R_pin); // 读取右边传感器的值
+        val_M = digitalRead(M_pin); // 读取中间传感器的值
 
-int L_pin = 11; //左边循迹传感器的引脚接数字口11
+        Serial.print("left:");
+        Serial.print(val_L);
+        Serial.print(" middle:");
+        Serial.print(val_M);
+        Serial.print(" right:");
+        Serial.println(val_R);
 
-int M_pin = 7; //中间循迹传感器的引脚接数字口7
+        delay(500); // 延迟500ms
+    }
 
-int R_pin = 8; //右边循迹传感器的引脚接数字口8
-
-int val_L, val_R, val_M; // 定义三个传感器的变量值
-
-void setup()
-
-{
-
-Serial.begin(9600); // 启动串口监视器，并设置波特率为9600
-
-pinMode(L_pin, INPUT); // 左边循迹传感器设置为输入
-
-pinMode(M_pin, INPUT); // 中考循迹传感器设置为输入
-
-pinMode(R_pin, INPUT); // 右边循迹传感器设置为输入
-
-}
-
-void loop()
-
-{
-
-val_L = digitalRead(L_pin);//读取左边传感器的值
-
-val_R = digitalRead(R_pin);//读取右边传感器的值
-
-val_M = digitalRead(M_pin);//读取中间传感器的值
-
-Serial.print("left:");
-
-Serial.print(val_L);
-
-Serial.print(" middle:");
-
-Serial.print(val_M);
-
-Serial.print(" right:");
-
-Serial.println(val_R);
-
-delay(500);// 延迟500ms
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 项目结果：
 
@@ -772,93 +696,62 @@ digitalRead-读取引脚电平状态，一般有两种状态，HIGH或者LOW。
 
 我们开始来编写代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程3.2
+    循迹传感器
+    http://www.keyes-robot.com
+    */
 
-课程3.2
+    int L_pin = 11; // 左边循迹传感器的引脚接数字口11
+    int M_pin = 7;  // 中间循迹传感器的引脚接数字口7
+    int R_pin = 8;  // 右边循迹传感器的引脚接数字口8
 
-循迹传感器
+    int val_L, val_R, val_M; // 定义三个传感器的变量值
 
-http://www.keyes-robot.com
+    void setup() {
+        Serial.begin(9600); // 启动串口监视器，并设置波特率为9600
+        pinMode(L_pin, INPUT); // 左边循迹传感器设置为输入
+        pinMode(M_pin, INPUT); // 中间循迹传感器设置为输入
+        pinMode(R_pin, INPUT); // 右边循迹传感器设置为输入
+        pinMode(9, OUTPUT);    // 设置数字口9为输出模式
+    }
 
-\*/
+    void loop() {
+        val_L = digitalRead(L_pin); // 读取左边传感器的值
+        val_R = digitalRead(R_pin); // 读取右边传感器的值
+        val_M = digitalRead(M_pin); // 读取中间传感器的值
 
-int L_pin = 11; //左边循迹传感器的引脚接数字口11
+        Serial.print("left:");
+        Serial.print(val_L);
+        Serial.print(" middle:");
+        Serial.print(val_M);
+        Serial.print(" right:");
+        Serial.println(val_R);
 
-int M_pin = 7; //中间循迹传感器的引脚接数字口7
+        if (val_L == LOW || val_M == LOW || val_R == LOW) { // 检测到信号
+            digitalWrite(9, HIGH); // LED 灯亮
+        } else { // 如果没有检测到信号
+            digitalWrite(9, LOW); // LED 灯灭
+        }
+    }
 
-int R_pin = 8; //右边循迹传感器的引脚接数字口8
-
-int val_L, val_R, val_M; // 定义三个传感器的变量值
-
-void setup()
-
-{
-
-Serial.begin(9600); // 启动串口监视器，并设置波特率为9600
-
-pinMode(L_pin, INPUT); // 左边循迹传感器设置为输入
-
-pinMode(M_pin, INPUT); // 中考循迹传感器设置为输入
-
-pinMode(R_pin, INPUT); // 右边循迹传感器设置为输入
-
-pinMode(9, OUTPUT);
-
-}
-
-void loop() {
-
-val_L = digitalRead(L_pin);//读取左边传感器的值
-
-val_R = digitalRead(R_pin);//读取右边传感器的值
-
-val_M = digitalRead(M_pin);//读取中间传感器的值
-
-Serial.print("left:");
-
-Serial.print(val_L);
-
-Serial.print(" middle:");
-
-Serial.print(val_M);
-
-Serial.print(" right:");
-
-Serial.println(val_R);
-
-if (val_L == LOW || val_M == LOW || val_R == LOW) //检测到信号
-
-{
-
-digitalWrite(9, HIGH);//LED 灯亮
-
-}
-
-else//如果没有检测到信号
-
-{
-
-digitalWrite(9, LOW);//LED 灯灭
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 上传代码到开发板，用我们的手去一个个的靠近传感器，我们看看LED灯的状态发生了改变没有？当我们用手去遮挡循迹传感器的时候，我们可以看到LED灯亮起来了。
 
 ### 第4课 舵机控制项目 
 
 ![](media/ebfc39b179ba70727ddf81ce6817deb5.png)
+
 项目介绍：
 
 舵机是一种位置伺服的驱动器，主要是由外壳、电路板、无核心马达、齿轮与位置检测器所构成。其工作原理是由接收机或者单片机发出信号给舵机，其内部有一个基准电路，产生周期为20ms，宽度为1.5ms
 的基准信号，将获得的直流偏置电压与电位器的电压比较，获得电压差输出。
 
-![](media/69be958142b773acdae33eeef12afed7.png)舵机有很多规格，但所有的舵机都有外接三根线，分别用棕、红、橙三种颜色进行区分，由于舵机品牌不同，颜色也会有所差异，棕色为接地线，红色为电源正极线，橙色为信号线。
+![](media/69be958142b773acdae33eeef12afed7.png)
+
+舵机有很多规格，但所有的舵机都有外接三根线，分别用棕、红、橙三种颜色进行区分，由于舵机品牌不同，颜色也会有所差异，棕色为接地线，红色为电源正极线，橙色为信号线。
 
 舵机的转动的角度是通过调节PWM（脉冲宽度调制）信号的占空比来实现的，标准PWM（脉冲宽度调制）信号的周期固定为20ms（50Hz），理论上脉宽分布应在1ms到2ms
 之间，但是，事实上脉宽可由0.5ms 到2.5ms
@@ -904,69 +797,44 @@ digitalWrite(9, LOW);//LED 灯灭
 
 项目代码1：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程4.1
+    伺服舵机
+    http://www.keyes-robot.com
+    */
 
-课程4.1
+    #define servoPin 10 // 舵机接数字口10
+    int pos; // 舵机的角度变量
+    int pulsewidth; // 舵机的脉宽变量
 
-伺服舵机
+    void setup() {
+        pinMode(servoPin, OUTPUT); // 舵机引脚设置为输出
+        procedure(0); // 设置舵机的角度为0度
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        for (pos = 0; pos <= 180; pos += 1) { // 从0到180度
+            procedure(pos); // 转动到pos角度
+            delay(15); // 控制舵机转动的速度
+        }
 
-\*/
+        for (pos = 180; pos >= 0; pos -= 1) { // 从180到0度
+            procedure(pos); // 转动到pos角度
+            delay(15);
+        }
+    }
 
-\#define servoPin 10 //舵机接数字口10
+    // 控制舵机的函数
+    void procedure(int myangle) {
+        pulsewidth = myangle * 11 + 500; // 计算出脉宽值
+        digitalWrite(servoPin, HIGH);
+        delayMicroseconds(pulsewidth); // 高电平持续的时间，就是脉宽
+        digitalWrite(servoPin, LOW);
+        delay((20 - pulsewidth / 1000)); // 周期是20ms，所以低电平持续剩下的时间
+    }
 
-int pos; //舵机的角度变量
-
-int pulsewidth; //舵机的脉宽变量
-
-void setup() {
-
-pinMode(servoPin, OUTPUT); //舵机引脚设置为输出
-
-procedure(0); //设置舵机的角度为0度
-
-}
-
-void loop() {
-
-for (pos = 0; pos \<= 180; pos += 1) { // 从0到180度
-
-procedure(pos); // 转动到pos角度
-
-delay(15); //控制舵机转动的速度
-
-}
-
-for (pos = 180; pos \>= 0; pos -= 1) { // 从180到0度
-
-procedure(pos); // 转动到pos角度
-
-delay(15);
-
-}
-
-}
-
-//控制舵机的函数
-
-void procedure(int myangle) {
-
-pulsewidth = myangle \* 11 + 500; //计算出脉宽值
-
-digitalWrite(servoPin, HIGH);
-
-delayMicroseconds(pulsewidth); //高电平持续的时间，就是脉宽
-
-digitalWrite(servoPin, LOW);
-
-delay((20 - pulsewidth / 1000)); //周期是20ms，所以低电平持续剩下的时间
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 在上传代码成功，我们可以看到舵机在0°到180°角度范围来回摆动。
 
@@ -979,53 +847,35 @@ delay((20 - pulsewidth / 1000)); //周期是20ms，所以低电平持续剩下�
 
 项目代码2:
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程4.2
+    伺服舵机
+    http://www.keyes-robot.com
+    */
 
-课程4.2
+    #include <Servo.h>
 
-伺服舵机
+    Servo myservo; // 创建舵机类实例
+    int pos = 0;   // 舵机角度变量
 
-http://www.keyes-robot.com
+    void setup() {
+        myservo.attach(10); // 舵机接数字口10
+    }
 
-\*/
+    void loop() {
+        for (pos = 0; pos <= 180; pos += 1) { // 从0到180度
+            myservo.write(pos); // 转动到pos角度位置
+            delay(15); // 等待15ms以控制舵机转动速度
+        }
 
-\#include \<Servo.h\>
+        for (pos = 180; pos >= 0; pos -= 1) { // 从180到0度
+            myservo.write(pos); // 转动到pos角度位置
+            delay(15); // 等待15ms以控制舵机转动速度
+        }
+    }
 
-Servo myservo; // 创建舵机类实例
-
-int pos = 0; // 舵机角度变量
-
-void setup() {
-
-myservo.attach(10); // 舵机接数字口10
-
-}
-
-void loop() {
-
-for (pos = 0; pos \<= 180; pos += 1) { // 从0到180度
-
-// in steps of 1 degree
-
-myservo.write(pos); // 转动到pos角度位置
-
-delay(15); // 等待15ms以控制舵机转动速度
-
-}
-
-for (pos = 180; pos \>= 0; pos -= 1) { // 从180到0度
-
-myservo.write(pos); // 转动到pos角度位置
-
-delay(15); // 等待15ms以控制舵机转动速度
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 项目结果：
 
@@ -1046,7 +896,9 @@ delay(15); // 等待15ms以控制舵机转动速度
 
 项目介绍：
 
-![](media/2a0b40b983f1aead31d43e1662c4257e.png)超声波传感器，它可以检测前方是否存在障碍物，并且检测出传感器与障碍物的详细距离。它的原理和蝙蝠飞行的原理一样，就是超声波模块发送出一种频率很高，人体无法听到的超声波信号。这些超声波的信号若是碰到障碍物，就会立刻反射回来，在接收到返回的信息之后，通过判断发射信号和接收信号的时间差，计算出传感器和障碍物的距离。
+![](media/2a0b40b983f1aead31d43e1662c4257e.png)
+
+超声波传感器，它可以检测前方是否存在障碍物，并且检测出传感器与障碍物的详细距离。它的原理和蝙蝠飞行的原理一样，就是超声波模块发送出一种频率很高，人体无法听到的超声波信号。这些超声波的信号若是碰到障碍物，就会立刻反射回来，在接收到返回的信息之后，通过判断发射信号和接收信号的时间差，计算出传感器和障碍物的距离。
 
 超声波参数：
 
@@ -1104,75 +956,49 @@ delay(15); // 等待15ms以控制舵机转动速度
 
 项目代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程5.1
+    超声波传感器
+    http://www.keyes-robot.com
+    */
 
-课程5.1
+    int trigPin = 12; // TRIG接数字口12
+    int echoPin = 13; // Echo接数字口13
+    long duration, cm, inches;
 
-超声波传感器
+    void setup() {
+        // 启动串口
+        Serial.begin(9600);
+        // 定义引脚模式
+        pinMode(trigPin, OUTPUT); // 输出
+        pinMode(echoPin, INPUT);  // 输入
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        digitalWrite(trigPin, LOW); // 拉低2us
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH); // 该传感器至少需要10us高电平触发
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW);
 
-\*/
+        // 读取echo高电平时间
+        duration = pulseIn(echoPin, HIGH);
 
-int trigPin = 12; // TRIG接数字口12
+        // 转换成距离
+        cm = (duration / 2) / 29.1;
+        inches = (duration / 2) / 74;
 
-int echoPin = 13; // Echo接数字口13
+        Serial.print(inches);
+        Serial.print(" in, ");
+        Serial.print(cm);
+        Serial.print(" cm");
+        Serial.println();
 
-long duration, cm, inches;
+        delay(200);
+    }
 
-void setup() {
-
-//启动串口
-
-Serial.begin (9600);
-
-//定义引脚模式
-
-pinMode(trigPin, OUTPUT);//输出
-
-pinMode(echoPin, INPUT);//输入
-
-}
-
-void loop() {
-
-digitalWrite(trigPin, LOW);//拉低2us
-
-delayMicroseconds(2);
-
-digitalWrite(trigPin, HIGH);// 该传感器至少需要10us高电平触发
-
-delayMicroseconds(10);
-
-digitalWrite(trigPin, LOW);
-
-// 读取echo高电平时间
-
-duration = pulseIn(echoPin, HIGH);
-
-// 转换成距离
-
-cm = (duration / 2) / 29.1;
-
-inches = (duration / 2) / 74;
-
-Serial.print(inches);
-
-Serial.print("in, ");
-
-Serial.print(cm);
-
-Serial.print("cm");
-
-Serial.println();
-
-delay(200);
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 项目结果：
 
@@ -1200,87 +1026,55 @@ inches = (duration/2) / 74-
 
 ![](media/3dae2bb0de4fec2635f0a2e3050eafca.png)
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程5.2
+    超声波传感器控制LED
+    http://www.keyes-robot.com
+    */
 
-课程5.2
+    int trigPin = 12; // TRIG接数字口12
+    int echoPin = 13; // Echo接数字口13
+    long duration, cm, inches;
 
-超声波传感器控制LED
+    void setup() {
+        Serial.begin(9600); // 启动串口
+        pinMode(trigPin, OUTPUT); // 输出
+        pinMode(echoPin, INPUT);   // 输入
+        pinMode(9, OUTPUT);         // 设置数字口9为输出
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        digitalWrite(trigPin, LOW); // 拉低2us
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH); // 该传感器至少需要10us高电平触发
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW);
 
-\*/
+        // 读取echo高电平时间
+        duration = pulseIn(echoPin, HIGH);
 
-int trigPin = 12; // TRIG接数字口12
+        // 转换成距离
+        cm = (duration / 2) / 29.1;
+        inches = (duration / 2) / 74;
 
-int echoPin = 13; // Echo接数字口13
+        Serial.print(inches);
+        Serial.print(" in, ");
+        Serial.print(cm);
+        Serial.print(" cm");
+        Serial.println();
 
-long duration, cm, inches;
+        delay(50);
 
-void setup() {
+        // 控制LED灯
+        if (cm >= 2 && cm <= 10) { // 距离在2~10cm范围内，LED亮
+            digitalWrite(9, HIGH);
+        } else { // 否则LED灭
+            digitalWrite(9, LOW);
+        }
+    }
 
-Serial.begin (9600); //启动串口
-
-pinMode(trigPin, OUTPUT); //输出
-
-pinMode(echoPin, INPUT);//输入
-
-pinMode(9, OUTPUT);
-
-}
-
-void loop()
-
-{
-
-digitalWrite(trigPin, LOW);//拉低2us
-
-delayMicroseconds(2);
-
-digitalWrite(trigPin, HIGH);// 该传感器至少需要10us高电平触发
-
-delayMicroseconds(10);
-
-digitalWrite(trigPin, LOW);
-
-// 读取echo高电平时间
-
-duration = pulseIn(echoPin, HIGH);
-
-// 转换成距离
-
-cm = (duration / 2) / 29.1;
-
-inches = (duration / 2) / 74;
-
-Serial.print(inches);
-
-Serial.print("in, ");
-
-Serial.print(cm);
-
-Serial.print("cm");
-
-Serial.println();
-
-delay(50);
-
-if (cm \>= 2 && cm \<= 10) { //距离在2~10cm范围内，LED亮
-
-digitalWrite(9, HIGH);
-
-}
-
-else { //否则LED灭
-
-digitalWrite(9, LOW);
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 上传好测试代码到开发板，我们用手去靠近超声波传感器，看LED
 灯亮起来了没有。
@@ -1289,16 +1083,22 @@ digitalWrite(9, LOW);
 
 项目介绍：
 
-![](media/7a1e0d244a83bad6564a24a50be11c08.jpg)红外遥控在日常生活中随处可见，它被用来控制各种家电，如电视、音响、录影机和卫星信号接收器。红外遥控是由红外发射和红外接收系统组成的，也就是一个红外遥控器和红外接收模块和一个能解码的单片机组成的。 
+![](media/7a1e0d244a83bad6564a24a50be11c08.jpg)
 
-![](media/7fa7afed8ee1fd21cde53a831e8bf7f2.png)红外发射的遥控器发射的38K红外载波信号是由遥控器里的编码芯片对其进行编码。它是以一段引导码，用户码，数据码，数据反码组成，利用脉冲的时间间隔来区别是0还是1信号(高电平低电平之比约为1:1时被认为是信号0)，而编码就是由这些0
+红外遥控在日常生活中随处可见，它被用来控制各种家电，如电视、音响、录影机和卫星信号接收器。红外遥控是由红外发射和红外接收系统组成的，也就是一个红外遥控器和红外接收模块和一个能解码的单片机组成的。 
+
+![](media/7fa7afed8ee1fd21cde53a831e8bf7f2.png)
+
+红外发射的遥控器发射的38K红外载波信号是由遥控器里的编码芯片对其进行编码。它是以一段引导码，用户码，数据码，数据反码组成，利用脉冲的时间间隔来区别是0还是1信号(高电平低电平之比约为1:1时被认为是信号0)，而编码就是由这些0
 、1信号组成。同一个遥控器的用户码是不变的，用数据吗不同来分辨遥控器按的键不同。当按下遥控器按键时，遥控器发送出红外载波信号，红外接收器接收到信号时程序对载波信号进行解码，通过数据码的不同来判断按下的是哪个键。单片机由接收到的01信号进行解码，由此判断遥控器按下的是什么键。
 
 红外接收我们用的是一个红外接收模块，主要由红外接收头组成，它是集接收、放大、解调一体的器件，它内部IC就已经完成了解调，能够完成从红外线接收到输出与TTL电平信号兼容的所有工作，输出的就是数字信号。他适用于红外线遥控和红外线数据传输。接收器做成的红外接收模块只有三个引脚，信号线，VCC，GND。与arduino和其他单片机连接通信非常方便。
 
 红外接收的参数：
 
-![](media/06bb7cadf8c2f3712434bde5dffe7df5.png)![](media/17b787d350e8882a03f0c31eeee3c9f2.png)工作电压：3.3-5V（DC）
+![](media/06bb7cadf8c2f3712434bde5dffe7df5.png)![](media/17b787d350e8882a03f0c31eeee3c9f2.png)
+
+工作电压：3.3-5V（DC）
 
 接口：3PIN接口
 
@@ -1329,53 +1129,33 @@ digitalWrite(9, LOW);
 
 在编写代码之前，要先导入红外的库文件，具体步骤请参考，（如何导入arduino库文件）这个文档。
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程6.1
+    红外接收
+    http://www.keyes-robot.com
+    */
 
-课程6.1
+    #include <IRremote.h> // IRremote库声明
 
-红外接收
+    int RECV_PIN = A1; // 定义红外接收器的引脚为A1
+    IRrecv irrecv(RECV_PIN);
+    decode_results results; // 解码结果放在 decode results结构的 result中
 
-http://www.keyes-robot.com
+    void setup() {
+        Serial.begin(9600);
+        irrecv.enableIRIn(); // 启动接收器
+    }
 
-\*/
+    void loop() {
+        if (irrecv.decode(&results)) { // 解码成功，收到一组红外讯号
+            Serial.println(results.value, HEX); // 以16进制换行输出接收代码
+            irrecv.resume(); // 接收下一个值
+        }
+        delay(100);
+    }
 
-\#include \<IRremote.h\> // IRremote库声明
-
-int RECV_PIN = A1; //定义红外接收器的引脚为A1
-
-IRrecv irrecv(RECV_PIN);
-
-decode_results results; //解码结果放在 decode results结构的 result中
-
-void setup()
-
-{
-
-Serial.begin(9600);
-
-irrecv.enableIRIn(); // 启动接收器
-
-}
-
-void loop() {
-
-if (irrecv.decode(&results))//解码成功，收到一组红外讯号
-
-{
-
-Serial.println(results.value, HEX);//以16进制换行输出接收代码
-
-irrecv.resume(); // 接收下一个值
-
-}
-
-delay(100);
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 项目结果：
 
@@ -1401,76 +1181,44 @@ irrecv.decode(&results)  解码成功，这个函数会返回true，并把结�
 
 ![](media/5fd6f13b75f48c1890cb96fd1b98870f.png)
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程6.2
+    红外控制LED
+    http://www.keyes-robot.com
+    */
 
-课程6.2
+    #include <IRremote.h>
 
-红外控制LED
+    int RECV_PIN = A1; // 定义红外接收器的引脚为A1
+    int LED_PIN = 9;   // 定义发光LED引脚数字9
+    int a = 0;
 
-http://www.keyes-robot.com
+    IRrecv irrecv(RECV_PIN);
+    decode_results results;
 
-\*/
+    void setup() {
+        Serial.begin(9600);
+        irrecv.enableIRIn(); // 初始化红外接收器
+        pinMode(LED_PIN, OUTPUT); // 设置发光LED引脚数字9
+    }
 
-\#include \<IRremote.h\>
+    void loop() {
+        if (irrecv.decode(&results)) {
+            Serial.println(results.value, HEX);
+            if (results.value == 0xFF02FD && a == 0) // 按下OK键
+            {
+                digitalWrite(LED_PIN, HIGH); // LED点亮
+                a = 1;
+            } else if (results.value == 0xFF02FD && a == 1) { // 再按一下
+                digitalWrite(LED_PIN, LOW); // LED熄灭
+                a = 0;
+            }
+            irrecv.resume(); // 接收下一个值
+        }
+    }
 
-int RECV_PIN = A1;//定义红外接收器的引脚为A1
-
-int LED_PIN = 9; //定义发光LED引脚数字9
-
-int a = 0;
-
-IRrecv irrecv(RECV_PIN);
-
-decode_results results;
-
-void setup()
-
-{
-
-Serial.begin(9600);
-
-irrecv.enableIRIn(); // 初始化红外接收器
-
-pinMode(LED_PIN, OUTPUT); //设置发光LED引脚数字4
-
-}
-
-void loop() {
-
-if (irrecv.decode(&results)) {
-
-Serial.println(results.value, HEX);
-
-if (results.value == 0xFF02FD & a == 0)
-//由上面的键值码，我们用的遥控器上的OK键，如果按下OK键
-
-{
-
-digitalWrite(LED_PIN, HIGH); //LED点亮
-
-a = 1;
-
-}
-
-else if (results.value == 0xFF02FD & a == 1) //再按一下
-
-{
-
-digitalWrite(LED_PIN, LOW); //LED熄灭
-
-a = 0;
-
-}
-
-irrecv.resume(); // 接收下一个值
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 上传代码带开发板,当遥控器按下OK按键时,LED就会亮，再按一下LED就会灭,同时电脑的串口会出现按键的命令编码.
 
@@ -1527,41 +1275,27 @@ irrecv.resume(); // 接收下一个值
 
 项目代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程7.1
+    蓝牙
+    http://www.keyes-robot.com
+    */
 
-课程7.1
+    char ble_val; // 字符变量，用于存放蓝牙接收到的值
 
-蓝牙
+    void setup() {
+        Serial.begin(9600); // 启动串口通信
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        if (Serial.available() > 0) { // 判断串口缓存区是否有数据
+            ble_val = Serial.read(); // 读取串口缓存区的数据
+            Serial.println(ble_val); // 打印出来
+        }
+    }
 
-\*/
-
-char ble_val; //字符变量，用于存放蓝牙接收到的值
-
-void setup() {
-
-Serial.begin(9600);
-
-}
-
-void loop() {
-
-if (Serial.available() \> 0) //判断串口缓存区是否有数据
-
-{
-
-ble_val = Serial.read(); //读取串口缓存区的数据
-
-Serial.println(ble_val); //打印出来
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 （上传代码之前不要连接蓝牙模块，因为代码的上传也是用的串口通信，跟蓝牙的串口通信会有冲突，导致代码上传不成功）
 
@@ -1626,69 +1360,37 @@ Serial.read()指从串口的缓冲区取出并读取一个Byte的数据，比如
 
 ![](media/99762080fdd2494984f803d81d6fafa7.png)
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程7.2
+    蓝牙控制LED
+    http://www.keyes-robot.com
+    */
 
-课程7.2
+    int ledpin = 9; // 定义LED引脚为9
 
-蓝牙控制LED
+    void setup() {
+        Serial.begin(9600); // 启动串口通信
+        pinMode(ledpin, OUTPUT); // 设置LED引脚为输出
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        int i;
+        if (Serial.available()) { // 检查串口是否有数据
+            i = Serial.read(); // 读取数据
+            Serial.println("DATA RECEIVED:");
+            if (i == 'B') { // 如果接收到'B'
+                digitalWrite(ledpin, HIGH); // 点亮LED
+                Serial.println("led on");
+            }
+            if (i == 'S') { // 如果接收到'S'
+                digitalWrite(ledpin, LOW); // 熄灭LED
+                Serial.println("led off");
+            }
+        }
+    }
 
-\*/
-
-int ledpin = 9;
-
-void setup()
-
-{
-
-Serial.begin(9600);
-
-pinMode(ledpin, OUTPUT);
-
-}
-
-void loop()
-
-{
-
-int i;
-
-if (Serial.available())
-
-{
-
-i = Serial.read();
-
-Serial.println("DATA RECEIVED:");
-
-if (i == 'B')
-
-{
-
-digitalWrite(ledpin, HIGH);
-
-Serial.println("led on");
-
-}
-
-if (i == 'S')
-
-{
-
-digitalWrite(ledpin, LOW);
-
-Serial.println("led off");
-
-}
-
-}
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 上传代码完成后，点击手机APP
 上![](media/bd85947380dfa7249ea4ecab47f1b3de.png)以控制LED。当您按下发送\`\`B''时，LED将打开，而当您松开发送\`\`S''时，LED将关闭。
@@ -1753,99 +1455,61 @@ L298P是ST意法半导体公司出品的优秀大功率电机专用驱动芯片�
 
 项目代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程8.1
+    电机驱动
+    http://www.keyes-robot.com
+    */
 
-课程8.1
+    int MA = 2;   // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4;   // 定义电机B方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
 
-电机驱动
+    void setup() {
+        pinMode(MA, OUTPUT);  // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        // 前进1秒
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+        delay(1000);
 
-\*/
+        // 后退1秒
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+        delay(1000);
 
-int MA = 2; //定义电机A方向控制引脚为D2
+        // 左转1秒
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+        delay(1000);
 
-int PWMA = 6; //定义电机A速度控制引脚为D6
+        // 右转1秒
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+        delay(1000);
 
-int MB = 4; //定义电机B方向控制引脚为D4
+        // 停止1秒
+        analogWrite(PWMA, 0); // 停止电机A
+        analogWrite(PWMB, 0); // 停止电机B
+        delay(1000);
+    }
 
-int PWMB = 5; //定义电机B速度控制引脚为D5
-
-void setup() {
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-}
-
-void loop() {
-
-//前进1秒
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-delay(1000);
-
-//后退1秒
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-delay(1000);
-
-//左转1秒
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-delay(1000);
-
-//右转1秒
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-delay(1000);
-
-//停止1秒
-
-analogWrite(PWMA, 0);
-
-analogWrite(PWMB, 0);
-
-delay(1000);
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 项目结果：
 
@@ -1863,107 +1527,71 @@ analogWrite(PWMB,200);电机的速度调节是靠PWM来实现的，控制电机�
 
 我们来通过调整PWM控制电机的速度，为后面我们控制车速做一个铺垫，接线不变
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程8.2
+    电机驱动
+    http://www.keyes-robot.com
+    */
 
-课程8.2
+    int MA = 2;   // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4;   // 定义电机B方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
 
-电机驱动
+    void setup() {
+        pinMode(MA, OUTPUT);  // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+    }
 
-http://www.keyes-robot.com
+    void loop() {
+        // 前进1秒
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 100); // 电机A速度为100
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 100); // 电机B速度为100
+        delay(1000);
 
-\*/
+        // 后退1秒
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 100); // 电机A速度为100
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 100); // 电机B速度为100
+        delay(1000);
 
-int MA = 2; //定义电机A方向控制引脚为D2
+        // 左转1秒
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 100); // 电机A速度为100
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 100); // 电机B速度为100
+        delay(1000);
 
-int PWMA = 6; //定义电机A速度控制引脚为D6
+        // 右转1秒
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 100); // 电机A速度为100
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 100); // 电机B速度为100
+        delay(1000);
 
-int MB = 4; //定义电机B方向控制引脚为D4
+        // 停止1秒
+        analogWrite(PWMA, 0); // 停止电机A
+        analogWrite(PWMB, 0); // 停止电机B
+        delay(1000);
+    }
 
-int PWMB = 5; //定义电机B速度控制引脚为D5
-
-void setup() {
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-}
-
-void loop() {
-
-//前进1秒
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 100); //电机A速度为100
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 100); //电机B速度为100
-
-delay(1000);
-
-//后退1秒
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 100); //电机A速度为100
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 100); //电机B速度为100
-
-delay(1000);
-
-//左转1秒
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 100); //电机A速度为100
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 100); //电机B速度为100
-
-delay(1000);
-
-//右转1秒
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 100); //电机A速度为100
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 100); //电机B速度为100
-
-delay(1000);
-
-//停止1秒
-
-analogWrite(PWMA, 0);
-
-analogWrite(PWMB, 0);
-
-delay(1000);
-
-}
-
-//\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
 上传代码成功，怎么样，电机转动的速度是不是慢了很多？
 
-### 第9课 点亮8\*8点阵屏 
+### 第9课 点亮8*8点阵屏 
 
 项目介绍：
 
-![](media/09ae6a37d36a084a1b8e4049e6f37429.png)制作小型显示器的一个有趣方法是使用8x8矩阵或4位7段显示器。像这样的矩阵是“多路复用的”——要控制64个LED，需要16个引脚。这需要很多引脚，还有像MAX7219这样的驱动芯片，可以为您控制矩阵，但是需要设置很多布线，它们占用了大量空间。毕竟，如果你能在没有大量布线的情况下控制一个矩阵，那不是很棒吗？这就是这些可爱的LED矩阵背包的用武之地。
+![](media/09ae6a37d36a084a1b8e4049e6f37429.png)
+
+制作小型显示器的一个有趣方法是使用8x8矩阵或4位7段显示器。像这样的矩阵是“多路复用的”——要控制64个LED，需要16个引脚。这需要很多引脚，还有像MAX7219这样的驱动芯片，可以为您控制矩阵，但是需要设置很多布线，它们占用了大量空间。毕竟，如果你能在没有大量布线的情况下控制一个矩阵，那不是很棒吗？这就是这些可爱的LED矩阵背包的用武之地。
 
 在8X8点阵模块中，我们用HT16K33芯片来驱动点阵，有了它，我们只需要利用一个I2C通信接口（A4 SDA和A5 SCL）就可以控制一个8X8点阵了，不但方便了接线，而且节约可单片机资源。
 
@@ -2059,61 +1687,41 @@ HT16K33 8X8点阵驱动模块
 
 项目代码：
 
-/\*
+    /* 
+    小乌龟智能车
+    课程9
+    8*8点阵
+    http://www.keyes-robot.com
+    */
 
-小乌龟智能车
+    #include <Matrix.h>
 
-课程9
+    Matrix myMatrix(A4, A5); // 创建Matrix对象
 
-8\*8点阵
+    uint8_t LedArray1[8] = {0x00, 0x3c, 0x42, 0x00, 0x00, 0x00, 0xa5, 0x42}; // 定义LED数组
+    uint8_t LEDArray[8];
 
-http://www.keyes-robot.com
+    void setup() {
+        myMatrix.begin(0x70); // 初始化矩阵
+        myMatrix.clear(); // 清空矩阵
+        myMatrix.setBrightness(5); // 亮度5,范围0~15
+    }
 
-\*/
+    void loop() {
+        for (int i = 0; i < 8; i++) {
+            LEDArray[i] = LedArray1[i]; // 将LedArray1的数据拷贝到LEDArray
 
-\#include \<Matrix.h\>
+            for (int j = 7; j >= 0; j--) {
+                if ((LEDArray[i] & 0x01) > 0) // 检查每一位
+                    myMatrix.drawPixel(j, i, 1); // 打亮对应的像素
 
-Matrix myMatrix(A4, A5);
+                LEDArray[i] = LEDArray[i] >> 1; // 右移
+            }
+        }
 
-uint8_t LedArray1\[8\] = {0x00,0x3c,0x42,0x00,0x00,0x00,0xa5,0x42};
+        myMatrix.write(); // 更新矩阵显示
+    }
 
-uint8_t LEDArray\[8\];
-
-void setup() {
-
-myMatrix.begin(0x70);
-
-myMatrix.clear();
-
-myMatrix.setBrightness(5);//亮度5,范围0~15
-
-}
-
-void loop() {
-
-for (int i = 0; i \< 8; i++)
-
-{
-
-LEDArray\[i\] = LedArray1\[i\];
-
-for (int j = 7; j \>= 0; j--)
-
-{
-
-if ((LEDArray\[i\] & 0x01) \> 0)
-
-myMatrix.drawPixel(j, i, 1);
-
-LEDArray\[i\] = LEDArray\[i\] \>\> 1;
-
-}
-
-}
-
-myMatrix.write();
-
-}
 
 （9）测试结果
 
@@ -2154,138 +1762,85 @@ myMatrix.write();
 
 测试代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+   课程10
+    画地为牢小乌龟
+    http://www.keyes-robot.com
+    */
+
+    int L_pin = 11; // 定义左边传感器引脚为D11
+    int M_pin = 7;  // 定义中间传感器引脚为D7
+    int R_pin = 8;  // 定义右边传感器引脚为D8
+    int MA = 2;     // 定义电机A方向控制引脚为D2
+    int PWMA = 6;   // 定义电机A速度控制引脚为D6
+    int MB = 4;     // 定义电机B方向控制引脚为D4
+    int PWMB = 5;   // 定义电机B速度控制引脚为D5
+
+    int L_val, M_val, R_val;
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnL() { // 小车左转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnR() { // 小车右转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
+
+    void setup() {
+        Serial.begin(9600); // 设置波特率为9600
+        pinMode(L_pin, INPUT); // 循迹传感器引脚配置为输入模式
+        pinMode(M_pin, INPUT);
+        pinMode(R_pin, INPUT);
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+    }
+
+    void loop() {
+        L_val = digitalRead(L_pin); // 读取左边传感器的值
+        M_val = digitalRead(M_pin); // 读取中间传感器的值
+        R_val = digitalRead(R_pin); // 读取右边传感器的值
+
+        if (L_val == 0 && M_val == 0 && R_val == 0) {
+            // 当都没有检测到黑线时前进
+            advance();
+        } else {
+            // 否则任一巡线传感器检测到黑线就后退再左转
+            back();
+            delay(500);
+            turnL();
+            delay(300);
+        }
+    }
 
-课程10
-
-画地为牢小乌龟
-
-http://www.keyes-robot.com
-
-\*/
-
-int L_pin = 11; //定义左边传感器引脚为D11
-
-int M_pin = 7; //定义中间传感器引脚为D7
-
-int R_pin = 8; //定义右边传感器引脚为D8
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-int L_val, M_val, R_val;
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnL() { //小车左转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnR() { //小车右转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
-
-void setup() {
-
-Serial.begin(9600); //设置波特率为9600
-
-pinMode(L_pin, INPUT); //循迹传感器引脚都配置为输入模式
-
-pinMode(M_pin, INPUT);
-
-pinMode(R_pin, INPUT);
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-}
-
-void loop() {
-
-L_val = digitalRead(L_pin); //读取左边传感器的值
-
-M_val = digitalRead(M_pin); //读中间传感器的值
-
-R_val = digitalRead(R_pin); //读取右边传感器的值
-
-if ( L_val == 0 && M_val == 0 && R_val == 0 ) {
-//当都没有检测到黑线时前进
-
-advance();
-
-}
-
-else { //否则任一巡线传感器检测到黑线就后退再左转
-
-back();
-
-delay(500);
-
-turnL();
-
-delay(300);
-
-}
-
-}
 
 测试结果：
 
@@ -2330,165 +1885,92 @@ delay(300);
 
 测试代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程11
+    循迹小乌龟
+    http://www.keyes-robot.com
+    */
+
+    int L_pin = 11; // 定义左边传感器引脚为D11
+    int M_pin = 7;  // 定义中间传感器引脚为D7
+    int R_pin = 8;  // 定义右边传感器引脚为D8
+    int MA = 2;     // 定义电机A方向控制引脚为D2
+    int PWMA = 6;   // 定义电机A速度控制引脚为D6
+    int MB = 4;     // 定义电机B方向控制引脚为D4
+    int PWMB = 5;   // 定义电机B速度控制引脚为D5
+
+    int L_val, M_val, R_val;
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnL() { // 小车左转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnR() { // 小车右转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
+
+    void setup() {
+        Serial.begin(9600); // 设置波特率为9600
+        pinMode(L_pin, INPUT); // 循迹传感器引脚配置为输入模式
+        pinMode(M_pin, INPUT);
+        pinMode(R_pin, INPUT);
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+    }
+
+    void loop() {
+        L_val = digitalRead(L_pin); // 读取左边传感器的值
+        M_val = digitalRead(M_pin); // 读取中间传感器的值
+        R_val = digitalRead(R_pin); // 读取右边传感器的值
+
+        if (M_val == 1) { // 中间检测到黑线
+            if (L_val == 1 && R_val == 0) { // 如果左边检测到黑线，右边没有，左转
+                turnL();
+            } else if (L_val == 0 && R_val == 1) { // 如果右边检测到黑线，左边没有，右转
+                turnR();
+            } else { // 否则前进
+                advance();
+            }
+        } else { // 中间没检测到黑线
+            if (L_val == 1 && R_val == 0) { // 如果左边检测到黑线，右边没有，左转
+                turnL();
+            } else if (L_val == 0 && R_val == 1) { // 如果右边检测到黑线，左边没有，右转
+                turnR();
+            } else { // 否则停止
+                stopp();
+            }
+        }
+    }
 
-课程11
-
-循迹小乌龟
-
-http://www.keyes-robot.com
-
-\*/
-
-int L_pin = 11; //定义左边传感器引脚为D11
-
-int M_pin = 7; //定义中间传感器引脚为D7
-
-int R_pin = 8; //定义右边传感器引脚为D8
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-int L_val, M_val, R_val;
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnL() { //小车左转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnR() { //小车右转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
-
-void setup() {
-
-Serial.begin(9600); //设置波特率为9600
-
-pinMode(L_pin, INPUT); //循迹传感器引脚都配置为输入模式
-
-pinMode(M_pin, INPUT);
-
-pinMode(R_pin, INPUT);
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-}
-
-void loop() {
-
-L_val = digitalRead(L_pin); //读取左边传感器的值
-
-M_val = digitalRead(M_pin); //读中间传感器的值
-
-R_val = digitalRead(R_pin); //读取右边传感器的值
-
-if (M_val == 1) { //中间检测到黑线
-
-if (L_val == 1 && R_val == 0) { //如果左边检测到黑线，右边没有，左转
-
-turnL();
-
-}
-
-else if (L_val == 0 && R_val == 1) {
-//否则如果右边检测到黑线，左边没有，右转
-
-turnR();
-
-}
-
-else { //否则前进
-
-advance();
-
-}
-
-}
-
-else { //中间没检测到黑线
-
-if (L_val == 1 && R_val == 0) { //如果左边检测到黑线，右边没有，左转
-
-turnL();
-
-}
-
-else if (L_val == 0 && R_val == 1) {
-//否则如果右边检测到黑线，左边没有，右转
-
-turnR();
-
-}
-
-else { //否则停止
-
-stopp();
-
-}
-
-}
-
-}
 
 测试结果：
 
@@ -2525,200 +2007,116 @@ stopp();
 
 测试代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程12
+    超声波跟随小乌龟智能车
+    http://www.keyes-robot.com
+    */
+
+    #include <Matrix.h>
+
+    Matrix myMatrix(A4, A5);
+
+    uint8_t LedArray1[8] = {0x00, 0x3c, 0x42, 0x00, 0x00, 0x00, 0xa5, 0x42}; // LED阵列
+
+    uint8_t LEDArray[8];
+
+    int trigPin = 12; // 定义TRIG引脚接D12
+    int echoPin = 13; // 定义ECHO引脚接D13
+    int distance;
+
+    int MA = 2; // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4; // 定义电机B方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
+
+    int get_distance() { // 超声波测距函数
+        int distance;
+        digitalWrite(trigPin, LOW);
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH); // 给TRIG引脚至少10us的时间触发
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW);
+        distance = pulseIn(echoPin, HIGH) / 58; // 检测脉冲宽度，并计算出距离
+        delay(10); // 延时10ms
+        Serial.print("distance:"); // 串口打印出距离
+        Serial.print(distance);
+        Serial.println("cm");
+        return distance;
+    }
+
+    void setup() {
+        Serial.begin(9600); // 设置波特率为9600
+        pinMode(trigPin, OUTPUT); // 定义TRIG为输出模式
+        pinMode(echoPin, INPUT); // 定义ECHO为输入模式
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+        myMatrix.begin(0x70);
+        myMatrix.clear();
+        myMatrix.setBrightness(5); // 亮度5,范围0~15
+    }
+
+    void loop() {
+        for (int i = 0; i < 8; i++) {
+            LEDArray[i] = LedArray1[i];
+            for (int j = 7; j >= 0; j--) {
+                if ((LEDArray[i] & 0x01) > 0)
+                    myMatrix.drawPixel(j, i, 1);
+                LEDArray[i] = LEDArray[i] >> 1;
+            }
+        }
+        myMatrix.write();
+
+        distance = get_distance(); // 调用测距函数
+
+        if (distance < 8) { // 如果距离小于8
+            back(); // 后退
+        } else if (distance >= 8 && distance < 13) { // 如果距离大于等于8，小于13
+            stopp(); // 停止
+        } else if (distance >= 13 && distance <= 35) { // 如果距离大于等于13，小于35
+            advance(); // 跟随
+        } else { // 如果以上都不是
+            stopp(); // 停止
+        }
+    }
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnL() { // 小车左转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnR() { // 小车右转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
 
-课程12
-
-超声波跟随小乌龟智能车
-
-http://www.keyes-robot.com
-
-\*/
-
-\#include \<Matrix.h\>
-
-Matrix myMatrix(A4, A5);
-
-uint8_t LedArray1\[8\] = {0x00,0x3c,0x42,0x00,0x00,0x00,0xa5,0x42};
-
-uint8_t LEDArray\[8\];
-
-int trigPin = 12; //定义TRIG引脚接D12
-
-int echoPin = 13; //定义ECHO引脚接D13
-
-int distance;
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-int get_distance() { //超声波测距函数
-
-int distance;
-
-digitalWrite(trigPin, LOW);
-
-delayMicroseconds(2);
-
-digitalWrite(trigPin, HIGH); //给TRIG引脚至少10us的时间触发
-
-delayMicroseconds(10);
-
-digitalWrite(trigPin, LOW);
-
-distance = pulseIn(echoPin, HIGH) / 58; //检测脉冲宽度，并计算出距离
-
-delay(10); //延时10ms
-
-Serial.print("distance:"); //串口打印出距离
-
-Serial.print(distance);
-
-Serial.println("cm");
-
-return distance;
-
-}
-
-void setup() {
-
-Serial.begin(9600); //设置波特率为9600
-
-pinMode(trigPin, OUTPUT); //定义TRIG为输出模式
-
-pinMode(echoPin, INPUT); //定义ECHO为输入模式
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-myMatrix.begin(0x70);
-
-myMatrix.clear();
-
-myMatrix.setBrightness(5);//亮度5,范围0~15
-
-}
-
-void loop() {
-
-for (int i = 0; i \< 8; i++)
-
-{
-
-LEDArray\[i\] = LedArray1\[i\];
-
-for (int j = 7; j \>= 0; j--)
-
-{
-
-if ((LEDArray\[i\] & 0x01) \> 0)
-
-myMatrix.drawPixel(j, i, 1);
-
-LEDArray\[i\] = LEDArray\[i\] \>\> 1;
-
-}
-
-}
-
-myMatrix.write();
-
-distance = get_distance(); //调用测距函数
-
-if (distance \< 8 ) {//如果距离小于8
-
-back();//后退
-
-}
-
-else if (distance \>= 8 && distance \< 13) { //如果距离大于等于8，小于13
-
-stopp();//停止
-
-}
-
-else if (distance \>= 13 && distance \<= 35 ) {
-//如果距离大于等于13，小于35
-
-advance();//跟随
-
-}
-
-else {//如果以上都不是
-
-stopp();//停止
-
-}
-
-}
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnL() { //小车左转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnR() { //小车右转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
 
 好了，
 桌面迷你蓝牙智能车跟随功能效果的代码全部编写好了，上传程序，看看精彩的效果！（在上传程序代码前，需要把蓝牙模块取下，否则代码会上传失败。需要上传代码成功后，再连接蓝牙模块。）
@@ -2757,298 +2155,165 @@ analogWrite(PWMB, 0); //电机B速度为0
 
 测试代码
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程13
+    超声波避障小乌龟智能车
+    http://www.keyes-robot.com
+    */
+
+    #include <Servo.h>
+
+    Servo myservo; // 创建舵机对象
+
+    #include <Matrix.h>
+
+    Matrix myMatrix(A4, A5); // 定义点阵的引脚在A4,A5
+
+    // 数组，用于储存图案的数据
+    uint8_t matrix_heart[8] = {0x18, 0x3c, 0x7e, 0xff, 0xff, 0xff, 0xe7, 0x42};
+    uint8_t matrix_smile[8] = {0x00, 0x3c, 0x42, 0x00, 0x00, 0x00, 0xa5, 0x42};
+    uint8_t matrix_front2[8] = {0x00, 0x00, 0x81, 0x42, 0xa5, 0x5a, 0x24, 0x18};
+    uint8_t matrix_back2[8] = {0x18, 0x24, 0x42, 0x99, 0x24, 0x42, 0x81, 0x00};
+    uint8_t matrix_right2[8] = {0x10, 0x30, 0x60, 0xff, 0xff, 0x60, 0x30, 0x10};
+    uint8_t matrix_left2[8] = {0x08, 0x0c, 0x06, 0xff, 0xff, 0x06, 0x0c, 0x08};
+    uint8_t matrix_stop2[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
+
+    uint8_t LEDArray[8];
+
+    int trigPin = 12; // 定义TRIG引脚接D12
+    int echoPin = 13; // 定义ECHO引脚接D13
+    int distance, distance_l, distance_r;
+
+    int MA = 2; // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4; // 定义电机B方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
+
+    void setup() {
+        Serial.begin(9600); // 初始化串口
+        myservo.attach(10); // 连接舵机到引脚10
+        pinMode(echoPin, INPUT); // 设置EchoPin为输入模式
+        pinMode(trigPin, OUTPUT); // 设置TRIG为输出模式
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+        myMatrix.begin(0x70);
+        myMatrix.setBrightness(5); // 亮度5,范围0~15
+        myMatrix.clear();
+        myMatrix.write();
+        myservo.write(90); // 舵机初始角度为90
+        delay(500);
+    }
+
+    void loop() {
+        distance = get_distance(); // 调用测距函数
+
+        if (distance > 0 && distance < 10) { // 如果距离小于10且大于0
+            stopp(); // 停止
+            myMatrix.clear();
+            myMatrix.write();
+            matrix_display(matrix_stop2); // 显示停止图案
+            delay(100);
+            myservo.write(180); // 舵机转到180度
+            delay(500);
+            distance_l = get_distance(); // 获取左边的距离
+            delay(100);
+            myservo.write(0); // 舵机转到0度
+            delay(500);
+            distance_r = get_distance(); // 获取右边的距离
+            delay(100);
+
+            if (distance_l > distance_r) { // 左边距离大于右边
+                turnL(); // 向左转
+                myMatrix.clear();
+                myMatrix.write();
+                matrix_display(matrix_left2); // 显示向左图案
+                myservo.write(90); // 舵机回到90度
+                delay(500);
+                myMatrix.clear();
+                myMatrix.write();
+                matrix_display(matrix_front2); // 显示前进图案
+            } else { // 右边距离大于左边
+                turnR(); // 向右转
+                myMatrix.clear();
+                myMatrix.write();
+                matrix_display(matrix_right2); // 显示右转图案
+                myservo.write(90); // 舵机回到90度
+                delay(500);
+                myMatrix.clear();
+                myMatrix.write();
+                matrix_display(matrix_front2); // 显示前进图案
+            }
+        } else { // 前方距离大于等于10cm
+            advance(); // 前进
+            myMatrix.clear();
+            myMatrix.write();
+            matrix_display(matrix_front2); // 显示前进图案
+        }
+    }
+
+    int get_distance() {
+        int distance = 0;
+        digitalWrite(trigPin, LOW); // 触发超声波信号
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH); // 发送超声波信号
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW); // 停止信号发送
+        distance = pulseIn(echoPin, HIGH) / 58; // 计算距离
+        Serial.println(distance); // 输出距离值
+        delay(10); // 延时10ms
+        return distance;
+    }
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnL() { // 小车左转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnR() { // 小车右转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
+
+    // 点阵屏显示函数
+    void matrix_display(unsigned char matrix_value[]) {
+        for (int i = 0; i < 8; i++) {
+            LEDArray[i] = matrix_value[i];
+            for (int j = 7; j >= 0; j--) {
+                if ((LEDArray[i] & 0x01) > 0)
+                    myMatrix.drawPixel(j, i, 1);
+                LEDArray[i] = LEDArray[i] >> 1;
+            }
+        }
+        myMatrix.write();
+    }
 
-课程13
-
-超声波避障小乌龟智能车
-
-http://www.keyes-robot.com
-
-\*/
-
-\#include \<Servo.h\>
-
-Servo myservo; // create servo object to control a servo
-
-\#include \<Matrix.h\>
-
-Matrix myMatrix(A4, A5); //定义点阵的引脚在A4,A5
-
-//数组，用于储存图案的数据，可以自己算也可以从取摸工具中得到
-
-uint8_t matrix_heart\[8\] = {0x18,0x3c,0x7e,0xff,0xff,0xff,0xe7,0x42};
-
-uint8_t matrix_smile\[8\] = {0x00,0x3c,0x42,0x00,0x00,0x00,0xa5,0x42};
-
-uint8_t matrix_front2\[8\] = {0x00,0x00,0x81,0x42,0xa5,0x5a,0x24,0x18};
-
-uint8_t matrix_back2\[8\] = {0x18,0x24,0x42,0x99,0x24,0x42,0x81,0x00};
-
-uint8_t matrix_right2\[8\] = {0x10,0x30,0x60,0xff,0xff,0x60,0x30,0x10};
-
-uint8_t matrix_left2\[8\] = {0x08,0x0c,0x06,0xff,0xff,0x06,0x0c,0x08};
-
-uint8_t matrix_stop2\[8\] = {0x81,0x42,0x24,0x18,0x18,0x24,0x42,0x81};
-
-uint8_t LEDArray\[8\];
-
-int trigPin = 12; //定义TRIG引脚接D12
-
-int echoPin = 13; //定义ECHO引脚接D13
-
-int distance, distance_l, distance_r;
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-void setup ()
-
-{
-
-Serial.begin(9600); //测量结果将通过此串口输出至 PC 上的串口监视器
-
-myservo.attach(10); // attaches the servo on pin 10 to the servo object
-
-pinMode(echoPin, INPUT); //设置EchoPin 为输入模式
-
-pinMode(trigPin, OUTPUT); //设置超声波数字IO脚模式，OUTPUT为输出
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-myMatrix.begin(0x70);
-
-myMatrix.setBrightness(5);//亮度5,范围0~15
-
-myMatrix.clear();
-
-myMatrix.write();
-
-myservo.write(90); //舵机角度为90
-
-delay(500);
-
-}
-
-void loop()
-
-{
-
-distance = get_distance(); //调用测距函数
-
-if (distance \> 0 && distance \< 10) { //如果距离小于20且大于0
-
-stopp();//停止
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_stop2); //点阵显示停止图案
-
-delay(100);
-
-myservo.write(180); //舵机转到180度
-
-delay(500);
-
-distance_l = get_distance(); //获取左边的距离
-
-delay(100);
-
-myservo.write(0); //舵机转到0度
-
-delay(500);
-
-distance_r = get_distance(); //获取右边的距离
-
-delay(100);
-
-if (distance_l \> distance_r) { //比较距离，如果左边大于右边
-
-turnL(); //向左转
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_left2); //点阵显示向左图案
-
-myservo.write(90);//舵机回到90度
-
-delay(500);
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-}
-
-else { //否则如果右边大于左边
-
-turnR();//向右转
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_right2); //显示右转图案
-
-myservo.write(90);//舵机回到90度
-
-delay(500);
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-}
-
-}
-
-else { //前方距离小于等于10cm时
-
-advance();//前进
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-}
-
-}
-
-int get_distance() {
-
-int distance = 0;
-
-digitalWrite(trigPin, LOW); // 通过Trig/Pin 发送脉冲，触发 HC-SR04
-测距，使发出发出超声波信号接口低电平2μs
-
-delayMicroseconds(2);
-
-digitalWrite(trigPin, HIGH); //
-使发出发出超声波信号接口高电平10μs，这里是至少10μs
-
-delayMicroseconds(10);
-
-digitalWrite(trigPin, LOW); // 保持发出超声波信号接口低电平
-
-distance = pulseIn(echoPin, HIGH) / 58; //
-读出脉冲时间,将脉冲时间转化为距离（单位：厘米）
-
-Serial.println(distance); //输出距离值
-
-delay(10);//延时10ms
-
-return distance;
-
-}
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnL() { //小车左转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnR() { //小车右转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
-
-//这个函数用于点阵屏显示
-
-void matrix_display(unsigned char matrix_value\[\])
-
-{
-
-for (int i = 0; i \< 8; i++)
-
-{
-
-LEDArray\[i\] = matrix_value\[i\];
-
-for (int j = 7; j \>= 0; j--)
-
-{
-
-if ((LEDArray\[i\] & 0x01) \> 0)
-
-myMatrix.drawPixel(j, i, 1);
-
-LEDArray\[i\] = LEDArray\[i\] \>\> 1;
-
-}
-
-}
-
-myMatrix.write();
-
-}
 
 测试结果
 
@@ -3081,251 +2346,150 @@ myMatrix.write();
 
 测试代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程14
+    红外控制小乌龟智能车
+    http://www.keyes-robot.com
+    */
+
+    #include <Matrix.h>
+    #include <IRremote.h>
+
+    int RECV_PIN = A1; // 定义IO口A1
+    IRrecv irrecv(RECV_PIN);
+    decode_results results; // 声明一个IRremote库函数独有的变量类型
+    
+    Matrix myMatrix(A4, A5); // 定义点阵的引脚在A4,A5
+
+    // 数组，用于储存图案的数据
+    uint8_t matrix_heart[8] = {0x18, 0x3c, 0x7e, 0xff, 0xff, 0xff, 0xe7, 0x42};
+    uint8_t matrix_smile[8] = {0x00, 0x3c, 0x42, 0x00, 0x00, 0x00, 0xa5, 0x42};
+    uint8_t matrix_front2[8] = {0x00, 0x00, 0x81, 0x42, 0xa5, 0x5a, 0x24, 0x18};
+    uint8_t matrix_back2[8] = {0x18, 0x24, 0x42, 0x99, 0x24, 0x42, 0x81, 0x00};
+    uint8_t matrix_right2[8] = {0x08, 0x0c, 0x06, 0xff, 0xff, 0x06, 0x0c, 0x08};
+    uint8_t matrix_left2[8] = {0x08, 0x0c, 0x06, 0xff, 0xff, 0x06, 0x0c, 0x08};
+    uint8_t matrix_stop2[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
+
+    uint8_t LEDArray[8];
+
+    int IR_val;
+    int MA = 2; // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4; // 定义电机B方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
+
+    void setup() {
+        Serial.begin(9600); // 设置波特率为9600
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+        irrecv.enableIRIn(); // 使能红外接收
+        myMatrix.begin(0x70);
+        myMatrix.setBrightness(5); // 亮度5,范围0~15
+        myMatrix.clear();
+        myMatrix.write();
+        matrix_display(matrix_heart); // 点阵显示心形图案
+        delay(500);
+    }
+
+    void loop() {
+        if (irrecv.decode(&results)) { // 是否接收到红外遥控信号
+            IR_val = results.value;
+            Serial.println(IR_val, HEX); // 串口打印数据
+
+            switch (IR_val) {
+                case 0xFF629D: // 前进
+                    advance();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_front2); // 点阵显示前进图案
+                    break;
+
+                case 0xFFA857: // 后退
+                    back();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_back2); // 点阵显示后退图案
+                    break;
+
+                case 0xFF22DD: // 左转
+                    turnL();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_left2); // 点阵显示向左图案
+                    break;
+
+                case 0xFFC23D: // 右转
+                    turnR();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_right2); // 显示右转图案
+                    break;
+
+                case 0xFF02FD: // 停止
+                    stopp();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_stop2); // 点阵显示停止图案
+                    break;
+
+                default:
+                    break;
+            }
+
+            irrecv.resume(); // 接收下个数据
+        }
+    }
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnL() { // 小车左转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnR() { // 小车右转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
+
+    // 这个函数用于点阵屏显示
+    void matrix_display(unsigned char matrix_value[]) {
+        for (int i = 0; i < 8; i++) {
+            LEDArray[i] = matrix_value[i];
+            for (int j = 7; j >= 0; j--) {
+                if ((LEDArray[i] & 0x01) > 0)
+                    myMatrix.drawPixel(j, i, 1);
+                LEDArray[i] = LEDArray[i] >> 1;
+            }
+        }
+        myMatrix.write();
+    }
 
-课程14
-
-红外控制小乌龟智能车
-
-http://www.keyes-robot.com
-
-\*/
-
-\#include \<Matrix.h\>
-
-\#include \<IRremote.h\>
-
-int RECV_PIN = A1; //定义IO口A1
-
-IRrecv irrecv(RECV_PIN);
-
-decode_results results;//声明一个IRremote库函数独有的变量类型
-
-Matrix myMatrix(A4, A5); //定义点阵的引脚在A4,A5
-
-//数组，用于储存图案的数据，可以自己算也可以从取摸工具中得到
-
-uint8_t matrix_heart\[8\] = {0x18,0x3c,0x7e,0xff,0xff,0xff,0xe7,0x42};
-
-uint8_t matrix_smile\[8\] = {0x00,0x3c,0x42,0x00,0x00,0x00,0xa5,0x42};
-
-uint8_t matrix_front2\[8\] = {0x00,0x00,0x81,0x42,0xa5,0x5a,0x24,0x18};
-
-uint8_t matrix_back2\[8\] = {0x18,0x24,0x42,0x99,0x24,0x42,0x81,0x00};
-
-uint8_t matrix_right2\[8\] = {0x08,0x0c,0x06,0xff,0xff,0x06,0x0c,0x08};
-
-uint8_t matrix_left2\[8\] = {0x08,0x0c,0x06,0xff,0xff,0x06,0x0c,0x08};
-
-uint8_t matrix_stop2\[8\] = {0x81,0x42,0x24,0x18,0x18,0x24,0x42,0x81};
-
-uint8_t LEDArray\[8\];
-
-int IR_val;
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-void setup() {
-
-Serial.begin(9600); //设置波特率为9600
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-irrecv.enableIRIn();// 使能红外接收
-
-myMatrix.begin(0x70);
-
-myMatrix.setBrightness(5);//亮度5,范围0~15
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_heart); //点阵显示心形图案
-
-delay(500);
-
-}
-
-void loop() {
-
-if (irrecv.decode(&results)) { //是否接收到红外遥控信号
-
-IR_val = results.value;
-
-Serial.println(IR_val, HEX); //串口打印数据
-
-switch (IR_val) {
-
-case 0xFF629D:
-
-advance();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-break;
-
-case 0xFFA857:
-
-back();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_back2); //点阵显示后退图案
-
-break;
-
-case 0xFF22DD:
-
-turnL();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_left2); //点阵显示向左图案
-
-break;
-
-case 0xFFC23D:
-
-turnR();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_right2); //显示右转图案
-
-break;
-
-case 0xFF02FD:
-
-stopp();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_stop2); //点阵显示停止图案
-
-break;
-
-default: break;
-
-}
-
-irrecv.resume();// 接收下个数据
-
-}
-
-}
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnL() { //小车左转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnR() { //小车右转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
-
-//这个函数用于点阵屏显示
-
-void matrix_display(unsigned char matrix_value\[\])
-
-{
-
-for (int i = 0; i \< 8; i++)
-
-{
-
-LEDArray\[i\] = matrix_value\[i\];
-
-for (int j = 7; j \>= 0; j--)
-
-{
-
-if ((LEDArray\[i\] & 0x01) \> 0)
-
-myMatrix.drawPixel(j, i, 1);
-
-LEDArray\[i\] = LEDArray\[i\] \>\> 1;
-
-}
-
-}
-
-myMatrix.write();
-
-}
 
 好了，上传程序，红外遥控器对准红外接收器，按下红外遥控器对应按键，看看效果吧！（注意：在上传测试代码前，需要把蓝牙模块取下，否则测试代码会上传失败。需要上传代码成功后，再连接蓝牙模块。）
 
@@ -3372,237 +2536,140 @@ myMatrix.write();
 
 测试代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程15
+    蓝牙控制小乌龟智能车
+    http://www.keyes-robot.com
+    */
+
+    #include <Matrix.h>
+
+    Matrix myMatrix(A4, A5); // 定义点阵的引脚在A4,A5
+
+    // 数组，用于储存图案的数据
+    uint8_t matrix_heart[8] = {0x18, 0x3c, 0x7e, 0xff, 0xff, 0xff, 0xe7, 0x42};
+    uint8_t matrix_smile[8] = {0x00, 0x3c, 0x42, 0x00, 0x00, 0x00, 0xa5, 0x42};
+    uint8_t matrix_front2[8] = {0x00, 0x00, 0x81, 0x42, 0xa5, 0x5a, 0x24, 0x18};
+    uint8_t matrix_back2[8] = {0x18, 0x24, 0x42, 0x99, 0x24, 0x42, 0x81, 0x00};
+    uint8_t matrix_right2[8] = {0x10, 0x30, 0x60, 0xff, 0xff, 0x60, 0x30, 0x10};
+    uint8_t matrix_left2[8] = {0x08, 0x0c, 0x06, 0xff, 0xff, 0x06, 0x0c, 0x08};
+    uint8_t matrix_stop2[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
+
+    uint8_t LEDArray[8];
+
+    int MA = 2; // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4; // 定义电机B方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
+
+    char blue_val;
+
+    void setup() {
+        Serial.begin(9600); // 设置波特率为9600
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+        myMatrix.begin(0x70);
+        myMatrix.setBrightness(5); // 亮度5,范围0~15
+        myMatrix.clear();
+        myMatrix.write();
+        matrix_display(matrix_heart); // 点阵显示心形图案
+        delay(500);
+    }
+
+    void loop() {
+        if (Serial.available() > 0) { // 接收到蓝牙信号
+            blue_val = Serial.read(); // 接收到的信号赋给blue_val
+            Serial.println(blue_val); // 串口监视器显示蓝牙信号
+
+            switch (blue_val) {
+                case 'F': // 接收到‘F’前进
+                    advance();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_front2); // 点阵显示前进图案
+                    break;
+
+                case 'B': // 接收到‘B’后退
+                    back();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_back2); // 点阵显示后退图案
+                    break;
+
+                case 'L': // 接收到‘L’左转
+                    turnL();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_left2); // 点阵显示向左图案
+                    break;
+
+                case 'R': // 接收到‘R’右转
+                    turnR();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_right2); // 点阵显示右转图案
+                    break;
+
+                case 'S': // 接收到‘S’停止
+                    stopp();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_stop2); // 点阵显示停止图案
+                    break;
+            }
+        }
+    }
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnL() { // 小车左旋转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void turnR() { // 小车右旋转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, 200); // 电机A速度为200
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, 200); // 电机B速度为200
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
+
+    // 这个函数用于点阵屏显示
+    void matrix_display(unsigned char matrix_value[]) {
+        for (int i = 0; i < 8; i++) {
+            LEDArray[i] = matrix_value[i];
+            for (int j = 7; j >= 0; j--) {
+                if ((LEDArray[i] & 0x01) > 0)
+                    myMatrix.drawPixel(j, i, 1);
+                LEDArray[i] = LEDArray[i] >> 1;
+            }
+        }
+        myMatrix.write();
+    }
 
-课程15
-
-蓝牙控制小乌龟智能车
-
-http://www.keyes-robot.com
-
-\*/
-
-\#include \<Matrix.h\>
-
-Matrix myMatrix(A4, A5); //定义点阵的引脚在A4,A5
-
-//数组，用于储存图案的数据，可以自己算也可以从取摸工具中得到
-
-uint8_t matrix_heart\[8\] = {0x18,0x3c,0x7e,0xff,0xff,0xff,0xe7,0x42};
-
-uint8_t matrix_smile\[8\] = {0x00,0x3c,0x42,0x00,0x00,0x00,0xa5,0x42};
-
-uint8_t matrix_front2\[8\] = {0x00,0x00,0x81,0x42,0xa5,0x5a,0x24,0x18};
-
-uint8_t matrix_back2\[8\] = {0x18,0x24,0x42,0x99,0x24,0x42,0x81,0x00};
-
-uint8_t matrix_right2\[8\] = {0x10,0x30,0x60,0xff,0xff,0x60,0x30,0x10};
-
-uint8_t matrix_left2\[8\] = {0x08,0x0c,0x06,0xff,0xff,0x06,0x0c,0x08};
-
-uint8_t matrix_stop2\[8\] = {0x81,0x42,0x24,0x18,0x18,0x24,0x42,0x81};
-
-uint8_t LEDArray\[8\];
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-char blue_val;
-
-void setup() {
-
-Serial.begin(9600); //设置波特率为9600
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-myMatrix.begin(0x70);
-
-myMatrix.setBrightness(5);//亮度5,范围0~15
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_heart); //点阵显示心形图案
-
-delay(500);
-
-}
-
-void loop() {
-
-if (Serial.available() \> 0) { //接收到蓝牙信号
-
-blue_val = Serial.read(); //接收到的信号赋给blue_val
-
-Serial.println(blue_val); //串口监视器显示蓝牙信号
-
-switch (blue_val) {
-
-case 'F': //接收到‘F’前进
-
-advance();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-break;
-
-case 'B':
-
-back();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_back2); //点阵显示后退图案
-
-break; //接收到‘B’后退
-
-case 'L':
-
-turnL();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_left2); //点阵显示向左图案
-
-break; //接收到‘L’左旋转
-
-case 'R':
-
-turnR();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_right2); //显示右转图案
-
-break; //接收到‘R’右旋转
-
-case 'S':
-
-stopp();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_stop2); //点阵显示停止图案
-
-break; //接收到‘S’停止
-
-}
-
-}
-
-}
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnL() { //小车左旋转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void turnR() { //小车右旋转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, 200); //电机A速度为200
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, 200); //电机B速度为200
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
-
-//这个函数用于点阵屏显示
-
-void matrix_display(unsigned char matrix_value\[\])
-
-{
-
-for (int i = 0; i \< 8; i++)
-
-{
-
-LEDArray\[i\] = matrix_value\[i\];
-
-for (int j = 7; j \>= 0; j--)
-
-{
-
-if ((LEDArray\[i\] & 0x01) \> 0)
-
-myMatrix.drawPixel(j, i, 1);
-
-LEDArray\[i\] = LEDArray\[i\] \>\> 1;
-
-}
-
-}
-
-myMatrix.write();
-
-}
 
 好了，按住蓝牙APP的前进、后退、左转弯、右转弯、停止、左旋转、右旋转的按钮控制桌面迷你蓝牙智能车分别前进、后退、左转弯、右转弯、停止、左旋转、右旋转的程序代码全编写完了。上传程序，看看效果。（在上传测试代码前，需要把蓝牙模块取下，否则代码会上传失败。需要上传代码成功后，再连接蓝牙模块。）
 
@@ -3642,662 +2709,365 @@ LED点阵模块G、V、CDA、SCL引脚分别对应的连接到电机驱动扩展
 
 测试代码：
 
-/\*
 
-小乌龟智能车
+    /* 
+    小乌龟智能车
+    课程16
+    多功能蓝牙小乌龟智能车
+    http://www.keyes-robot.com
+    */
+
+    #include <Matrix.h>
+    #include <IRremote.h> // 导入红外的库
+    #include <Servo.h>
+
+    int RECV_PIN = A1; // 定义IO口A1
+    IRrecv irrecv(RECV_PIN);
+    decode_results results; // 声明一个IRremote库函数独有的变量类型
+
+    Servo myservo; // 创建舵机
+    Matrix myMatrix(A4, A5); // 定义点阵的引脚在A4,A5
+
+    // 数组，用于储存图案的数据
+    uint8_t matrix_heart[8] = {0x18, 0x3c, 0x7e, 0xff, 0xff, 0xff, 0xe7, 0x42};
+    uint8_t matrix_smile[8] = {0x00, 0x3c, 0x42, 0x00, 0x00, 0x00, 0xa5, 0x42};
+    uint8_t matrix_front2[8] = {0x00, 0x00, 0x81, 0x42, 0xa5, 0x5a, 0x24, 0x18};
+    uint8_t matrix_back2[8] = {0x18, 0x24, 0x42, 0x99, 0x24, 0x42, 0x81, 0x00};
+    uint8_t matrix_right2[8] = {0x10, 0x30, 0x60, 0xff, 0xff, 0x60, 0x30, 0x10};
+    uint8_t matrix_left2[8] = {0x08, 0x0c, 0x06, 0xff, 0xff, 0x06, 0x0c, 0x08};
+    uint8_t matrix_stop2[8] = {0x81, 0x42, 0x24, 0x18, 0x18, 0x24, 0x42, 0x81};
+
+    uint8_t LEDArray[8];
+
+    int trigPin = 12; // 定义TRIG引脚接D12
+    int echoPin = 13; // 定义ECHO引脚接D13
+    int distance, distance_l, distance_r;
+
+    int MA = 2; // 定义电机A方向控制引脚为D2
+    int PWMA = 6; // 定义电机A速度控制引脚为D6
+    int MB = 4; // 定义电机A方向控制引脚为D4
+    int PWMB = 5; // 定义电机B速度控制引脚为D5
+
+    char blue_val;
+    int IR_val;
+    int speeds = 200; // 初始化速度speeds为200
+    int L_pin = 11; // 定义左边传感器引脚为D11
+    int M_pin = 7; // 定义中间传感器引脚为D7
+    int R_pin = 8; // 定义右边传感器引脚为D8
+    int L_val, M_val, R_val;
+
+    int get_distance() { // 超声波测距函数
+        int distance;
+        digitalWrite(trigPin, LOW);
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH); // 给TRIG引脚至少10us的时间触发
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW);
+        distance = pulseIn(echoPin, HIGH) / 58; // 检测脉冲宽度并计算出距离
+        delay(20); // 延时20ms
+        return distance;
+    }
+
+    void setup() {
+        Serial.begin(9600); // 设置波特率为9600
+        myservo.attach(10); // 将舵机对象连接到引脚10
+        pinMode(trigPin, OUTPUT); // 定义TRIG为输出模式
+        pinMode(echoPin, INPUT); // 定义ECHO为输入模式
+        pinMode(L_pin, INPUT); // 循迹传感器引脚都配置为输入模式
+        pinMode(M_pin, INPUT);
+        pinMode(R_pin, INPUT);
+        pinMode(MA, OUTPUT); // 配置电机引脚为输出模式
+        pinMode(PWMA, OUTPUT);
+        pinMode(MB, OUTPUT);
+        pinMode(PWMB, OUTPUT);
+        irrecv.enableIRIn(); // 使能红外接收
+        myMatrix.begin(0x70);
+        myMatrix.setBrightness(5); // 亮度5,范围0~15
+        myMatrix.clear();
+        myMatrix.write();
+        matrix_display(matrix_heart); // 点阵显示心形图案
+        myservo.write(90); // 舵机角度为90
+        delay(500);
+    }
+
+    void loop() {
+        if (Serial.available() > 0) { // 接收到蓝牙信号
+            blue_val = Serial.read(); // 接收到的信号赋给blue_val
+            Serial.println(blue_val); // 串口监视器显示蓝牙信号
+            switch (blue_val) {
+                case 'F': // 接收到‘F’前进
+                    advance();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_front2); // 点阵显示前进图案
+                    break;
+                case 'B': // 接收到‘B’后退
+                    back();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_back2); // 点阵显示后退图案
+                    break;
+                case 'L': // 接收到‘L’左转
+                    turnL();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_left2); // 点阵显示向左图案
+                    break;
+                case 'R': // 接收到‘R’右转
+                    turnR();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_right2); // 点阵显示右转图案
+                    break;
+                case 'S': // 接收到‘S’停止
+                    stopp();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_stop2); // 点阵显示停止图案
+                    break;
+                case 'Y': // 接收到‘Y’，进入跟随模式
+                    follow();
+                    break;
+                case 'U': // 接收到‘U’，进入避障模式
+                    avoid();
+                    break;
+                case 'X': // 接收到‘X’，巡黑线模式
+                    track();
+                    break;
+            }
+        }
+
+        if (irrecv.decode(&results)) { // 是否接收到红外遥控信号
+            IR_val = results.value;
+            Serial.println(IR_val, HEX); // 串口打印数据
+            switch (IR_val) {
+                case 0xFF629D: // 前进
+                    advance();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_front2); // 点阵显示前进图案
+                    break;
+                case 0xFFA857: // 后退
+                    back();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_back2); // 点阵显示后退图案
+                    break;
+                case 0xFF22DD: // 左转
+                    turnL();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_left2); // 点阵显示向左图案
+                    break;
+                case 0xFFC23D: // 右转
+                    turnR();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_right2); // 点阵显示右转图案
+                    break;
+                case 0xFF02FD: // 停止
+                    stopp();
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_stop2); // 点阵显示停止图案
+                    break;
+                default:
+                    break;
+            }
+            irrecv.resume(); // 接收下个数据
+        }
+    }
+
+    void advance() { // 小车前进
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, speeds); // 电机A速度为speeds
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, speeds); // 电机B速度为speeds
+    }
+
+    void back() { // 小车后退
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, speeds); // 电机A速度为speeds
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, speeds); // 电机B速度为speeds
+    }
+
+    void turnL() { // 小车左旋转
+        digitalWrite(MA, HIGH); // 电机A反转
+        analogWrite(PWMA, speeds); // 电机A速度为speeds
+        digitalWrite(MB, LOW); // 电机B正转
+        analogWrite(PWMB, speeds); // 电机B速度为speeds
+    }
+
+    void turnR() { // 小车右旋转
+        digitalWrite(MA, LOW); // 电机A正转
+        analogWrite(PWMA, speeds); // 电机A速度为speeds
+        digitalWrite(MB, HIGH); // 电机B反转
+        analogWrite(PWMB, speeds); // 电机B速度为speeds
+    }
+
+    void stopp() { // 小车停止
+        analogWrite(PWMA, 0); // 电机A速度为0
+        analogWrite(PWMB, 0); // 电机B速度为0
+    }
+
+    void speeds_a() { // 增速函数
+        int a_flag = 1; // 用于while循环
+        while (a_flag) {
+            Serial.println(speeds); // 显示速度
+            if (speeds < 255) { // 最大增到255
+                speeds++;
+                delay(10); // 调节增速的速度
+            }
+            if (Serial.available() > 0) {
+                blue_val = Serial.read();
+                if (blue_val == 'S') a_flag = 0; // 接收到‘S’停止加速
+            }
+        }
+    }
+
+    void speeds_d() { // 减速函数
+        int d_flag = 1; // 用于while循环
+        while (d_flag) {
+            Serial.println(speeds); // 显示速度
+            if (speeds > 0) { // 最小减到0
+                speeds--;
+                delay(10); // 调节减速的速度
+            }
+            if (Serial.available() > 0) {
+                blue_val = Serial.read();
+                if (blue_val == 'S') d_flag = 0; // 接收到‘S’停止减速
+            }
+        }
+    }
+
+    void follow() {
+        int follow_flag = 1;
+        while (follow_flag) {
+            distance = get_distance(); // 调用测距函数
+            if (distance < 8) { // 如果距离小于8
+                back(); // 后退
+            } else if (distance >= 8 && distance < 13) { // 如果距离大于等于8，小于13
+                stopp(); // 停止
+            } else if (distance >= 13 && distance <= 35) { // 如果距离大于等于13，小于35
+                advance(); // 跟随
+            } else { // 如果以上都不是
+                stopp(); // 停止
+            }
+            if (Serial.available() > 0) {
+                blue_val = Serial.read();
+                if (blue_val == 'S') { // 接收到‘S’退出循环，小车停止
+                    follow_flag = 0;
+                    stopp();
+                }
+            }
+        }
+    }
+
+    void avoid() {
+        int avoid_flag = 1;
+        while (avoid_flag) {
+            distance = get_distance(); // 调用测距函数
+            if (distance > 0 && distance < 10) { // 如果距离小于10且大于0
+                stopp(); // 停止
+                myMatrix.clear();
+                myMatrix.write();
+                matrix_display(matrix_stop2); // 点阵显示停止图案
+                delay(100);
+                myservo.write(180); // 舵机转到180度
+                delay(500);
+                distance_l = get_distance(); // 获取左边的距离
+                delay(100);
+                myservo.write(0); // 舵机转到0度
+                delay(500);
+                distance_r = get_distance(); // 获取右边的距离
+                delay(100);
+
+                if (distance_l > distance_r) { // 比较距离，如果左边大于右边
+                    turnL(); // 向左转
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_left2); // 点阵显示向左图案
+                    myservo.write(90); // 舵机回到90度
+                    delay(500);
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_front2); // 点阵显示前进图案
+                } else { // 否则如果右边大于左边
+                    turnR(); // 向右转
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_right2); // 显示右转图案
+                    myservo.write(90); // 舵机回到90度
+                    delay(500);
+                    myMatrix.clear();
+                    myMatrix.write();
+                    matrix_display(matrix_front2); // 点阵显示前进图案
+                }
+            } else { // 前方距离小于等于10cm时
+                advance(); // 前进
+                myMatrix.clear();
+                myMatrix.write();
+                matrix_display(matrix_front2); // 点阵显示前进图案
+            }
+            if (Serial.available() > 0) {
+                blue_val = Serial.read();
+                if (blue_val == 'S') { // 接收到‘S’退出循环，小车停止
+                    avoid_flag = 0;
+                    stopp();
+                }
+            }
+        }
+    }
+
+    void track() {
+        int track_flag = 1;
+        while (track_flag) {
+            L_val = digitalRead(L_pin); // 读取左边传感器的值
+            M_val = digitalRead(M_pin); // 读取中间传感器的值
+            R_val = digitalRead(R_pin); // 读取右边传感器的值
+
+            if (M_val == 1) { // 中间检测到黑线
+                if (L_val == 1 && R_val == 0) { // 如果左边检测到黑线，右边没有，左转
+                    turnL();
+                } else if (L_val == 0 && R_val == 1) { // 如果右边检测到黑线，左边没有，右转
+                    turnR();
+                } else { // 否则前进
+                    advance();
+                }
+            } else { // 中间没检测到黑线
+                if (L_val == 1 && R_val == 0) { // 如果左边检测到黑线，右边没有，左转
+                    turnL();
+                } else if (L_val == 0 && R_val == 1) { // 如果右边检测到黑线，左边没有，右转
+                    turnR();
+                } else { // 否则停止
+                    stopp();
+                }
+            }
+
+            if (Serial.available() > 0) {
+                blue_val = Serial.read();
+                if (blue_val == 'S') { // 接收到‘S’退出循环，小车停止
+                    track_flag = 0;
+                    stopp();
+                }
+            }
+        }
+    }
+
+    // 这个函数用于点阵屏显示
+    void matrix_display(unsigned char matrix_value[]) {
+        for (int i = 0; i < 8; i++) {
+            LEDArray[i] = matrix_value[i];
+            for (int j = 7; j >= 0; j--) {
+                if ((LEDArray[i] & 0x01) > 0)
+                    myMatrix.drawPixel(j, i, 1);
+                LEDArray[i] = LEDArray[i] >> 1;
+            }
+        }
+        myMatrix.write();
+    }
 
-课程16
-
-多功能蓝牙小乌龟智能车
-
-http://www.keyes-robot.com
-
-\*/
-
-\#include \<Matrix.h\>
-
-\#include \<IRremote.h\> //导入红外的库
-
-int RECV_PIN = A1; //定义IO口A1
-
-IRrecv irrecv(RECV_PIN);
-
-decode_results results;//声明一个IRremote库函数独有的变量类型
-
-\#include \<Servo.h\>
-
-Servo myservo; // 创建舵机
-
-Matrix myMatrix(A4, A5); //定义点阵的引脚在A4,A5
-
-//数组，用于储存图案的数据，可以自己算也可以从取摸工具中得到
-
-uint8_t matrix_heart\[8\] = {0x18,0x3c,0x7e,0xff,0xff,0xff,0xe7,0x42};
-
-uint8_t matrix_smile\[8\] = {0x00,0x3c,0x42,0x00,0x00,0x00,0xa5,0x42};
-
-uint8_t matrix_front2\[8\] = {0x00,0x00,0x81,0x42,0xa5,0x5a,0x24,0x18};
-
-uint8_t matrix_back2\[8\] = {0x18,0x24,0x42,0x99,0x24,0x42,0x81,0x00};
-
-uint8_t matrix_right2\[8\] = {0x10,0x30,0x60,0xff,0xff,0x60,0x30,0x10};
-
-uint8_t matrix_left2\[8\] = {0x08,0x0c,0x06,0xff,0xff,0x06,0x0c,0x08};
-
-uint8_t matrix_stop2\[8\] = {0x81,0x42,0x24,0x18,0x18,0x24,0x42,0x81};
-
-uint8_t LEDArray\[8\];
-
-int trigPin = 12; //定义TRIG引脚接D12
-
-int echoPin = 13; //定义ECHO引脚接D13
-
-int distance, distance_l, distance_r;
-
-int MA = 2; //定义电机A方向控制引脚为D2
-
-int PWMA = 6; //定义电机A速度控制引脚为D6
-
-int MB = 4; //定义电机A方向控制引脚为D4
-
-int PWMB = 5; //定义电机A速度控制引脚为D5
-
-char blue_val;
-
-int IR_val;
-
-int speeds = 200; //初始化速度speeds为200
-
-int L_pin = 11; //定义左边传感器引脚为D11
-
-int M_pin = 7; //定义中间传感器引脚为D7
-
-int R_pin = 8; //定义右边传感器引脚为D8
-
-int L_val, M_val, R_val;
-
-int get_distance() { //超声波测距函数
-
-int distance;
-
-digitalWrite(trigPin, LOW);
-
-delayMicroseconds(2);
-
-digitalWrite(trigPin, HIGH); //给TRIG引脚至少10us的时间触发
-
-delayMicroseconds(10);
-
-digitalWrite(trigPin, LOW);
-
-distance = pulseIn(echoPin, HIGH) / 58; //检测脉冲宽度，并计算出距离
-
-delay(20); //延时20ms
-
-return distance;
-
-}
-
-void setup() {
-
-Serial.begin(9600); //设置波特率为9600
-
-myservo.attach(10); // attaches the servo on pin 10 to the servo object
-
-pinMode(trigPin, OUTPUT); //定义TRIG为输出模式
-
-pinMode(echoPin, INPUT); //定义ECHO为输入模式
-
-pinMode(L_pin, INPUT); //循迹传感器引脚都配置为输入模式
-
-pinMode(M_pin, INPUT);
-
-pinMode(R_pin, INPUT);
-
-pinMode(MA, OUTPUT); //配置电机引脚为输出模式
-
-pinMode(PWMA, OUTPUT);
-
-pinMode(MB, OUTPUT);
-
-pinMode(PWMB, OUTPUT);
-
-irrecv.enableIRIn();// 使能红外接收
-
-myMatrix.begin(0x70);
-
-myMatrix.setBrightness(5);//亮度5,范围0~15
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_heart); //点阵显示心形图案
-
-myservo.write(90); //舵机角度为90
-
-delay(500);
-
-}
-
-void loop() {
-
-if (Serial.available() \> 0) { //接收到蓝牙信号
-
-blue_val = Serial.read(); //接收到的信号赋给blue_val
-
-Serial.println(blue_val); //串口监视器显示蓝牙信号
-
-switch (blue_val) {
-
-case 'F': //接收到‘F’前进
-
-advance();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-break;
-
-case 'B':
-
-back();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_back2); //点阵显示后退图案
-
-break; //接收到‘B’后退
-
-case 'L':
-
-turnL();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_left2); //点阵显示向左图案
-
-break; //接收到‘L’左旋转
-
-case 'R':
-
-turnR();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_right2); //显示右转图案
-
-break; //接收到‘R’右旋转
-
-case 'S':
-
-stopp();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_stop2); //点阵显示停止图案
-
-break; //接收到‘S’停止
-
-case 'Y': follow(); break; //接收到‘Y’，进入跟随模式
-
-case 'U': avoid(); break; //接收到‘U’，进入避障模式
-
-case 'X': track(); break; //接收到‘X’，巡黑线模式
-
-}
-
-}
-
-if (irrecv.decode(&results)) { //是否接收到红外遥控信号
-
-IR_val = results.value;
-
-Serial.println(IR_val, HEX); //串口打印数据
-
-switch (IR_val) {
-
-case 0xFF629D:
-
-advance();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-break;
-
-case 0xFFA857:
-
-back();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_back2); //点阵显示后退图案
-
-break;
-
-case 0xFF22DD:
-
-turnL();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_left2); //点阵显示向左图案
-
-break;
-
-case 0xFFC23D:
-
-turnR();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_right2); //显示右转图案
-
-break;
-
-case 0xFF02FD:
-
-stopp();
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_stop2); //点阵显示停止图案
-
-break;
-
-default: break;
-
-}
-
-irrecv.resume();// 接收下个数据
-
-}
-
-}
-
-void advance() { //小车前进
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, speeds); //电机A速度为speeds
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, speeds); //电机B速度为speeds
-
-}
-
-void back() { //小车后退
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, speeds); //电机A速度为speeds
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, speeds); //电机B速度为speeds
-
-}
-
-void turnL() { //小车左旋转
-
-digitalWrite(MA, HIGH); //电机A反转
-
-analogWrite(PWMA, speeds); //电机A速度为speeds
-
-digitalWrite(MB, LOW); //电机B正转
-
-analogWrite(PWMB, speeds); //电机B速度为speeds
-
-}
-
-void turnR() { //小车右旋转
-
-digitalWrite(MA, LOW); //电机A正转
-
-analogWrite(PWMA, speeds); //电机A速度为speeds
-
-digitalWrite(MB, HIGH); //电机B反转
-
-analogWrite(PWMB, speeds); //电机B速度为speeds
-
-}
-
-void stopp() { //小车停止
-
-analogWrite(PWMA, 0); //电机A速度为0
-
-analogWrite(PWMB, 0); //电机B速度为0
-
-}
-
-void speeds_a() { //增速函数
-
-int a_flag = 1; //用于while循环
-
-while (a_flag) {
-
-Serial.println(speeds); //显示速度
-
-if (speeds \< 255) { //最大增到255
-
-speeds++;
-
-delay(10); //调节增速的速度
-
-}
-
-blue_val = Serial.read();
-
-if (blue_val == 'S')a_flag = 0; //接收到‘S’停止加速
-
-}
-
-}
-
-void speeds_d() { //减速函数
-
-int d_flag = 1; //用于while循环
-
-while (d_flag) {
-
-Serial.println(speeds); //显示速度
-
-if (speeds \> 0) { //最小减到0
-
-speeds--;
-
-delay(10); //调节减速的速度
-
-}
-
-blue_val = Serial.read();
-
-if (blue_val == 'S')d_flag = 0; //接收到‘S’停止减速
-
-}
-
-}
-
-void follow() {
-
-int follow_flag = 1;
-
-while (follow_flag) {
-
-distance = get_distance(); //调用测距函数
-
-if (distance \< 8 ) {//如果距离小于8
-
-back();//后退
-
-}
-
-else if (distance \>= 8 && distance \< 13) { //如果距离大于等于8，小于13
-
-stopp();//停止
-
-}
-
-else if (distance \>= 13 && distance \<= 35 ) {
-//如果距离大于等于13，小于35
-
-advance();//跟随
-
-}
-
-else {//如果以上都不是
-
-stopp();//停止
-
-}
-
-blue_val = Serial.read();
-
-if (blue_val == 'S') { //接收到‘S’退出循环，小车停止
-
-follow_flag = 0;
-
-stopp();
-
-}
-
-}
-
-}
-
-void avoid() {
-
-int avoid_flag = 1;
-
-while (avoid_flag) {
-
-distance = get_distance(); //调用测距函数
-
-if (distance \> 0 && distance \< 10) { //如果距离小于20且大于0
-
-stopp();//停止
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_stop2); //点阵显示停止图案
-
-delay(100);
-
-myservo.write(180); //舵机转到180度
-
-delay(500);
-
-distance_l = get_distance(); //获取左边的距离
-
-delay(100);
-
-myservo.write(0); //舵机转到0度
-
-delay(500);
-
-distance_r = get_distance(); //获取右边的距离
-
-delay(100);
-
-if (distance_l \> distance_r) { //比较距离，如果左边大于右边
-
-turnL(); //向左转
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_left2); //点阵显示向左图案
-
-myservo.write(90);//舵机回到90度
-
-delay(500);
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-}
-
-else { //否则如果右边大于左边
-
-turnR();//向右转
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_right2); //显示右转图案
-
-myservo.write(90);//舵机回到90度
-
-delay(500);
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-}
-
-}
-
-else { //前方距离小于等于10cm时
-
-advance();//前进
-
-myMatrix.clear();
-
-myMatrix.write();
-
-matrix_display(matrix_front2); //点阵显示前进图案
-
-}
-
-blue_val = Serial.read();
-
-if (blue_val == 'S') { //接收到‘S’退出循环，小车停止
-
-avoid_flag = 0;
-
-stopp();
-
-}
-
-}
-
-}
-
-void track() {
-
-int track_flag = 1;
-
-while (track_flag) {
-
-L_val = digitalRead(L_pin); //读取左边传感器的值
-
-M_val = digitalRead(M_pin); //读中间传感器的值
-
-R_val = digitalRead(R_pin); //读取右边传感器的值
-
-if (M_val == 1) { //中间检测到黑线
-
-if (L_val == 1 && R_val == 0) { //如果左边检测到黑线，右边没有，左转
-
-turnL();
-
-}
-
-else if (L_val == 0 && R_val == 1) {
-//否则如果右边检测到黑线，左边没有，右转
-
-turnR();
-
-}
-
-else { //否则前进
-
-advance();
-
-}
-
-}
-
-else { //中间没检测到黑线
-
-if (L_val == 1 && R_val == 0) { //如果左边检测到黑线，右边没有，左转
-
-turnL();
-
-}
-
-else if (L_val == 0 && R_val == 1) {
-//否则如果右边检测到黑线，左边没有，右转
-
-turnR();
-
-}
-
-else { //否则停止
-
-stopp();
-
-}
-
-}
-
-blue_val = Serial.read();
-
-if (blue_val == 'S') { //接收到‘S’退出循环，小车停止
-
-track_flag = 0;
-
-stopp();
-
-}
-
-}
-
-}
-
-//这个函数用于点阵屏显示
-
-void matrix_display(unsigned char matrix_value\[\])
-
-{
-
-for (int i = 0; i \< 8; i++)
-
-{
-
-LEDArray\[i\] = matrix_value\[i\];
-
-for (int j = 7; j \>= 0; j--)
-
-{
-
-if ((LEDArray\[i\] & 0x01) \> 0)
-
-myMatrix.drawPixel(j, i, 1);
-
-LEDArray\[i\] = LEDArray\[i\] \>\> 1;
-
-}
-
-}
-
-myMatrix.write();
-
-}
 
 好了，蓝牙多功能控制智能车的程序都已经编写好了，上传程序，实际操作下看看效果。（在上传程序代码前，需要把蓝牙模块取下，否则代码会上传失败。需要上传代码成功后，再连接蓝牙模块。）
 
