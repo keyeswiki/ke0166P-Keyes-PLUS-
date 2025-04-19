@@ -524,11 +524,11 @@ for循环顺序如下：
 
 知道了这么个顺序之后，回到代码中：
 
-for (int value = 0; value \< 255; value=value+1){
+for (int value = 0; value < 255; value=value+1){
 
 ...}
 
-for (int value = 255; value \>0; value=value-1){
+for (int value = 255; value >0; value=value-1){
 
 ...}
 
