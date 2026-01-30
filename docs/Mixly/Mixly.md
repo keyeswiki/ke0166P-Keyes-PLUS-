@@ -8,7 +8,7 @@
 
 （1）米思奇（Mixly）软件下载
 
-我们通过点击链接来下载Mixly软件，下载链接为：https://pan.baidu.com/s/1urZP69J7Zj46RjOJpboEvQ?pwd=keye
+我们通过点击链接来下载Mixly软件，下载链接为：<https://pan.baidu.com/s/1urZP69J7Zj46RjOJpboEvQ?pwd=keye>
 
 ### 1.软件的更新
 
