@@ -1,5 +1,9 @@
 # Scartch 教程
 
+# Scartch资料下载
+
+[Scartch资料下载](./Scratch资料.zip)
+
 ## 驱动安装与开发环境
 
 ### 1.KidsBlock软件安装方法 
